@@ -8,19 +8,38 @@
       <input type="text" class="form-control" placeholder="Filter..." [(ngModel)]="criteria">
     </div>
     <div class="col-md-8">
+      <ng-container *ngIf="names.length > 1; else templateEmpty">
         <app-clients *ngFor="let name of (names | filter:criteria)"
         (clientDeleteEvent)="onClientDelete($event)"
         (clientSelectedEvent)="onClientSelected($event)" [name]="name" [selection]="selection">
         </app-clients>
+      </ng-container>
     </div>
+    <app-card>
+      <div card-body> Soy body</div>
+      <div card-header>Soy header</div>
+    </app-card>
+    <app-card>
+      <div card-body> Soy body 2</div>
+      <div card-header>Soy header 2</div>
+    </app-card>
+    <app-card>
+      <div card-body> Soy body 3</div>
+      <div card-header>Soy header 3</div>
+    </app-card>
+    
+
     <div class="col-md-4">
 
-      <div *ngIf="selection">
+      <ng-container *ngIf="selection">
 
         <p>Your name is: {{selection?.name}}</p>
         <app-button (click)="onClear()" [color]="'blue'" [label]="'clear'"></app-button>
-      </div>
+      </ng-container>
     </div>
+    <ng-template #templateEmpty>
+      We dont have client xd
+    </ng-template>
   </div>
   <p>{{'999' | currency:"EUR"}}</p>
 </div>
