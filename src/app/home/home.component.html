@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 my-3">
+      <app-form-new-item [selection]="selection" (updateItemEvent)="updateClient($event)" (newItemEvent)="addNewName($event)" [label]="'Name'" [className]="'btn-info'">
+      </app-form-new-item>
+    </div>
+    <div class="col-md-6 my-3">
+      <input type="text" class="form-control" placeholder="Filter..." [(ngModel)]="criteria">
+    </div>
+    <div class="col-md-8">
+        <app-clients *ngFor="let name of (names | filter:criteria)"
+        (clientDeleteEvent)="onClientDelete($event)"
+        (clientSelectedEvent)="onClientSelected($event)" [name]="name" [selection]="selection">
+        </app-clients>
+    </div>
+    <div class="col-md-4">
+
+      <div *ngIf="selection">
+
+        <p>Your name is: {{selection?.name}}</p>
+        <app-button (click)="onClear()" [color]="'blue'" [label]="'clear'"></app-button>
+      </div>
+    </div>
+  </div>
+  <p>{{'999' | currency:"EUR"}}</p>
+</div>

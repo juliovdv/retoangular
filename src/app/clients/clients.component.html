@@ -1,0 +1,10 @@
+<ul class="list-group">
+<li class="list-group-item"(click)="onClientSelect(name)" [ngClass]="{'active': name?._id === selection?._id}">
+  {{name?.name| titlecase}}
+  <button *ngIf="selection?._id === name?._id"
+  type="button"
+  class="btn btn-danger float-end"
+  (click)="onClientDelete('name._id')">Delete</button>
+
+</li>
+</ul>
