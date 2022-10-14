@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-contact-reactive',
@@ -12,10 +13,11 @@ export class ContactReactiveComponent implements OnInit {
   //myField = new FormControl();
   name!: string;
   departaments: string[] = [];
-
+  selectedClient$ = this.dataSvc.selectedClient$;
   constructor(
     private readonly fb: FormBuilder,
-    private readonly route: ActivatedRoute)
+    private readonly route: ActivatedRoute,
+    private readonly dataSvc: DataService)
     { }
 
   ngOnInit(): void {
